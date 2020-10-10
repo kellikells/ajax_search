@@ -15,10 +15,61 @@ from datetimerange import DateTimeRange
 import datetime as otherdatetime
 import pytz
 # ==========================================
+
 def index(request):
 
     return render(request, 'search_app/index.html')
 # ---------------------------------------------
+
+def create(request):
+
+    if request.method == 'POST':
+
+        errors = User.objects.basic_validator(request.POST)
+        if len(errors):
+            context = {
+                'errors': errors
+            }
+            return render(request, 'search_app/index.html', context)
+        
+        else:
+            User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], gender=request.POST['gender'], image_path=request.POST['image_path'], sport=request.POST['sport'])
+
+            return redirect('/')
+# ---------------------------------------------
+
+def show(request):
+    if request.method == 'POST':
+    
+        print('-'*30)
+        limit = int(request.POST['perPage'])
+    
+        users = User.objects.all()[:limit]
+       
+        return render(request, 'search_app/table.html', {'users': users})
+
+
+
+# ---------------------------------------------
+
+
+
+
+# ---------------------------------------------
+
+
+
+
+# ---------------------------------------------
+
+
+
+# ---------------------------------------------
+
+
+
+
+
 # ---------------------------------------------
 # get the first page using pagination
 # def on_load(request):

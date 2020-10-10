@@ -1,0 +1,12 @@
+options:
+-make separate tables:
+    -user (first_name, last_name, gender)
+    -image_path
+    -sport (basketball, volleyball, soccer, football, baseball)
+
+-when creating user, if user exists, prefill info from User table & Sport table
+    but allow for image_path
+
+========================================
+limit by :
+User.objects.all()[:5]
