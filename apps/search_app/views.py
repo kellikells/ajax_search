@@ -58,12 +58,20 @@ def show(request):
 # ---------------------------------------------
 
 def search(request):
+
     return render(request, 'search_app/search_page.html')
 
 
 # ---------------------------------------------
+# def search_results(request):
+#     if request.method == 'POST':
 
+#         print(request.POST['gender'])
 
+#         return render(request, 'search_app/search_page.html')
+
+        # users = User.objects.filter(gender='male')
+        # return render(request, 'search_app/search_results.html', )
 
 
 # ---------------------------------------------

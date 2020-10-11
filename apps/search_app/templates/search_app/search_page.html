@@ -33,7 +33,8 @@
                             <input name='name' type='text' placeholder='name'>
 
                             <div class='form-check'>
-                                <input name='gender' value='female' id='female' class='form-check-input' type='checkbox'>
+                                <input name='gender' value='female' id='female' class='form-check-input'
+                                    type='checkbox'>
                                 <label class='form-check-label' for='female'>
                                     Female
                                 </label>
@@ -82,23 +83,9 @@
                                 </label>
                             </div>
 
-
-
-
-
-
                         </form>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
 
             </div>
             <!-- ================ $('#form_results') ================= -->
@@ -113,45 +100,40 @@
 
                     </div>
                 </div>
-
-
-
-
             </div>
-
-
         </div>
 
-
-
         <!-- =============================================== -->
-
 
     </div>
 
     <!-- --------------------------------------------------------- -->
     <script>
 
-
-        function submitForm(){
+        function submitForm() {
             $.ajax({
                 method: 'post',
                 url: $('#search_form').attr('action'),
                 data: $('#search_form').serialize(),
-                success: function(serverResponse){
+                success: function (serverResponse) {
                     $('#form_results').html(serverResponse)
                 }
             })
+            return false;   // prevent it from changing page
         }
 
+
         // referring to checkbox inputs
-        $('.form-check-input').click(function(){
+        $('.form-check-input').click(function () {
 
 
             console.log('clicked')
         })
 
-        
+
+
+
+
         // $('#show_users').submit(function (event) {
         //     event.preventDefault()
 

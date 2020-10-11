@@ -10,7 +10,7 @@ urlpatterns = [
 
     url(r'^search/$', views.search),
 
-    # url(r'^/$', views.),
+    # url(r'^search/results/$', views.search_results),
 
     # url(r'^/$', views.),
 
