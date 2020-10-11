@@ -19,6 +19,7 @@ import pytz
 def index(request):
 
     return render(request, 'search_app/index.html')
+
 # ---------------------------------------------
 
 def create(request):
@@ -36,23 +37,28 @@ def create(request):
             User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], gender=request.POST['gender'], image_path=request.POST['image_path'], sport=request.POST['sport'])
 
             return redirect('/')
+
 # ---------------------------------------------
 
 def show(request):
     if request.method == 'POST':
-    
-        print('-'*30)
-        limit = int(request.POST['perPage'])
-    
-        users = User.objects.all()[:limit]
-       
-        return render(request, 'search_app/table.html', {'users': users})
 
-
+        # if the input is empty, show all users
+        if len(request.POST['perPage']) == 0:
+            users = User.objects.all().order_by('-id')
+            return render(request, 'search_app/table.html', {'users': users})
+    
+        else:
+            # save input to <limit> and change to interval
+            limit = int(request.POST['perPage'])
+            users = User.objects.all().order_by('-id')[:limit]
+        
+            return render(request, 'search_app/table.html', {'users': users})
 
 # ---------------------------------------------
 
-
+def search(request):
+    return render(request, 'search_app/search_page.html')
 
 
 # ---------------------------------------------

@@ -8,7 +8,7 @@ urlpatterns = [
 
     url(r'^show/$', views.show),
 
-    # url(r'^/$', views.),
+    url(r'^search/$', views.search),
 
     # url(r'^/$', views.),
 

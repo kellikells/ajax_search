@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>ajax_search</title>
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'
+        integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>
+    <!-- my css -->
+    <link rel='stylesheet' href='../../static/style.css'>
+    <!-- Link to jQuery  -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+</head>
+
+<body>
+
+    <div style='margin: 1rem 6rem;'>
+        <div class='row'>
+            <!-- ---------------------------------------------- -->
+            <div class='col-5' style='border: solid black 2px;'>
+                <div class='row'>
+                    <div class='col'>
+
+                        <!-- =========== $('#search_form') ============ -->
+                        <form action='/search/' method='post' id='search_form'>
+                            {% csrf_token %}
+
+                            <h4>Search Users</h4>
+                            <input name='name' type='text' placeholder='name'>
+
+                            <div class='form-check'>
+                                <input name='gender' value='female' id='female' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for='female'>
+                                    Female
+                                </label>
+                            </div>
+
+                            <div class='form-check'>
+                                <input name='gender' value='male' id='male' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for='male'>
+                                    Male
+                                </label>
+                            </div>
+
+                            <h4>Sports</h4>
+                            <div class='form-check'>
+                                <input name='' value='' id='' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for=''>
+                                    Basketball
+                                </label>
+                            </div>
+
+                            <div class='form-check'>
+                                <input name='' value='' id='' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for=''>
+                                    Volleyball
+                                </label>
+                            </div>
+
+                            <div class='form-check'>
+                                <input name='' value='' id='' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for=''>
+                                    Baseball
+                                </label>
+                            </div>
+
+                            <div class='form-check'>
+                                <input name='' value='' id='' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for=''>
+                                    Soccer
+                                </label>
+                            </div>
+
+                            <div class='form-check'>
+                                <input name='' value='' id='' class='form-check-input' type='checkbox'>
+                                <label class='form-check-label' for=''>
+                                    Football
+                                </label>
+                            </div>
+
+
+
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <!-- ================ $('#form_results') ================= -->
+            <div class='col' id='form_results'>
+                <div class='row'>
+                    <div class='col'>
+
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =============================================== -->
+
+
+    </div>
+
+    <!-- --------------------------------------------------------- -->
+    <script>
+
+
+        function submitForm(){
+            $.ajax({
+                method: 'post',
+                url: $('#search_form').attr('action'),
+                data: $('#search_form').serialize(),
+                success: function(serverResponse){
+                    $('#form_results').html(serverResponse)
+                }
+            })
+        }
+
+        // referring to checkbox inputs
+        $('.form-check-input').click(function(){
+
+
+            console.log('clicked')
+        })
+
+        
+        // $('#show_users').submit(function (event) {
+        //     event.preventDefault()
+
+        //     $.ajax({
+        //         method: 'post',
+        //         url: $(this).attr('action'),
+        //         data: $(this).serialize(),
+
+        //         success: function (serverResponse) {
+        //             $('#data_placeholder').html(serverResponse)
+        //         }
+        //     })
+        // })
+
+
+    </script>
+
+    <!-- BOOTSTRAP'S: Optional JavaScript
+    jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'
+        integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo'
+        crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
+        integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6'
+        crossorigin='anonymous'></script>
+</body>
+
+</html>
