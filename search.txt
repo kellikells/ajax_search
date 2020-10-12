@@ -7,6 +7,9 @@ options:
 -when creating user, if user exists, prefill info from User table & Sport table
     but allow for image_path
 
+
+********* figure out how to remove when unchecked
+
 ========================================
 limit by :
 User.objects.all()[:5]

@@ -64,10 +64,10 @@ def search(request):
     return render(request, 'search_app/search_page.html')
 
 
-# # ---------------------------------------------
-# # creating dictionaries to store input data 
-# gender_dict = {'gender':[]}
-# sport_dict = {'sport':[]}
+
+
+
+# ********* figure out how to remove when unchecked
 
 # ---------------------------------------------
 # creating 'searches' dictionary to store input data 
@@ -77,25 +77,25 @@ def search_results(request):
     users = User.objects.all()
     
 
+    # if data includes an input with name='gender'
+    if request.POST.get('gender') != None:
 
-    if request.POST['gender'] or request.POST['sport']:
-
+        # if input is not already part of the key: gender, add value to dict: searches
+        if request.POST['gender'] not in searches['gender']:
         
-        new = {'g': request.POST['gender']}
+            new = {'g': request.POST['gender']}
 
-        # add postData gender to the key 'gender'
-        searches['gender'].append(new['g'])
-        print('-'*20)
-        print(searches)
+            # add postData gender to the key 'gender'
+            searches['gender'].append(new['g'])
 
-    # if request.POST['sport']:
-    #     new = {'s': request.POST['sport']}
+    # if data includes an input with name='sport'
+    if request.POST.get('sport') != None:
 
-    #     # add postData sport to the key 'sport'
-    #     searches['sport'].append(new['s'])
+        if request.POST['sport'] not in searches['sport']:
+            new = {'s': request.POST['sport']}
 
-    #     print('-'*20)
-    #     print(searches)
+            # add postData sport to the key 'sport'
+            searches['sport'].append(new['s'])
 
 # ------------------------------------
 #         if request.POST['gender']: 
