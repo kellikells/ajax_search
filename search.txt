@@ -10,3 +10,134 @@ options:
 ========================================
 limit by :
 User.objects.all()[:5]
+
+-----------------
+
+Admin.objects.filter(first_name__startswith="S") 
+- filters objects with first_name that starts with "S"
+
+
+Admin.objects.exclude(first_name__contains="E") 
+- excludes objects where first_name contains "E"
+
+
+Admin.objects.filter(age__gt=80)  
+- filters objects with age greater than 80
+
+
+admin = Admin.objects.filter(last_name__contains="o").exclude(first_name__contains="o")
+
+admin = Admin.objects.filter(age__lt=70).filter(first_name__startswith="S")
+
+admin = Admin.objects.filter(age__lt=70, first_name__startswith="S")
+
+admin = Admin.objects.filter(age__lt=70)|Admin.objects.filter(first_name__startswith="S")
+
+
+admin = Admin.objects.filter(age__lt=70) AND Admin.objects.filter(first_name__startswith="S")
+
+---------------------------------------
+
+
+
+class MyHandler(ParentHandler):
+    def post(self):
+        sports_played = self.request.get('sports_played')
+        #sports_played is a list or array of all the selected checkboxes that I can iterate through
+
+        self.request.POST.getall('sports_played')
+
+-------------------------------------
+>>> print(form['checkbox'].checked)
+False
+>>> print(form['checkbox'].value)
+None
+---------------------------------
+
+If the checkbox is checked then you'll get the value:
+
+>>> print(form['checkbox'].checked)
+True
+>>> print(form['checkbox'].value)
+checkbox 1
+
+---------------------------------------
+If there are multiple checkboxes of the same name, you can assign a list to that name to check all the checkboxes whose value is present in the list:
+
+>>> form['checkboxes'] = ['a', 'c']
+>>> print(form.get('checkboxes', index=0).value)
+a
+>>> print(form.get('checkboxes', index=1).value)
+None
+>>> print(form.get('checkboxes', index=2).value)
+c
+-----------------------------
+function printChecked(){
+				var items=document.getElementsByName('acs');
+				var selectedItems="";
+				for(var i=0; i<items.length; i++){
+					if(items[i].type=='checkbox' && items[i].checked==true)
+						selectedItems+=items[i].value+"\n";
+				}
+				alert(selectedItems);
+
+
+
+-------------------------------------------
+$("#btn_").on('click', function () {
+    var checkbox_value = "";
+    $(":checkbox").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            checkbox_value += $(this).val() + "|";
+        }
+    });
+    alert(checkbox_value);
+});
+
+
+-----------------------------
+Post.objects.filter(title__contains='title')
+
+
+
+
+
+======================================================
+SHELL QUERIES:
+
+
+>>> a = User.objects.filter(gender__contains='female')
+
+>>> a.values()
+<QuerySet [{'id': 11, 'first_name': 'cat', 'last_name': 'thing', 'gender': 'female', 'image_path': 'https://media.i, 'sport': 'volleyball', 'created_at': datetime.date(2020, 10, 11), 'updated_at': datetime.date(2020, 10, 11)}, {'id': 12, 'first_name': 'woman', 'last_name': 'lady', 'gender': 'female', 'image_path': 'https://media.istockphoto.com/vectors/adorable-pet-guinea-pi
+
+......................................
+
+
+
+
+
+......................................
+
+>>> a.filter(sport='baseball')|a.filter(sport='volleyball')
+
+
+<QuerySet [<User: first_name= Jacob, last_name= Barnes, gender= male, image_path= https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/34868.png&w=350&h=254, sport= baseball>, <User: first_name= Gerardo, last_name= Reyes, gender= male, image_path= https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/35765.png&w=350&h=254, sport= baseball>, <User: first_name= cat, last_name= thing, gender= female, image_path= https://media.istockphoto.com/vectors/adorable-pet-guinea-pig-or-cavy-isolated-on-white-background-cute-vector-id1205662261, sport= volleyball>, <User: first_name= woman, last_name= lady, gender= female, image_path= https://media.istockphoto.com/vectors/adorable-pet-guinea-pig-or-cavy-isolated-on-white-background-cute-vector-id1205662261, sport= baseball>]>
+>>>
+
+
+
+......................................
+
+
+
+
+
+......................................
+
+
+
+
+
+......................................

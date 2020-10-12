@@ -55,23 +55,124 @@ def show(request):
         
             return render(request, 'search_app/table.html', {'users': users})
 
-# ---------------------------------------------
+# =============================================
+#                search page 
+# =============================================
 
 def search(request):
 
     return render(request, 'search_app/search_page.html')
 
 
+# # ---------------------------------------------
+# # creating dictionaries to store input data 
+# gender_dict = {'gender':[]}
+# sport_dict = {'sport':[]}
+
 # ---------------------------------------------
-# def search_results(request):
-#     if request.method == 'POST':
+# creating 'searches' dictionary to store input data 
+searches = {'gender':[], 'sport':[]}
 
-#         print(request.POST['gender'])
+def search_results(request):
+    users = User.objects.all()
+    
 
-#         return render(request, 'search_app/search_page.html')
 
+    if request.POST['gender'] or request.POST['sport']:
+
+        
+        new = {'g': request.POST['gender']}
+
+        # add postData gender to the key 'gender'
+        searches['gender'].append(new['g'])
+        print('-'*20)
+        print(searches)
+
+    # if request.POST['sport']:
+    #     new = {'s': request.POST['sport']}
+
+    #     # add postData sport to the key 'sport'
+    #     searches['sport'].append(new['s'])
+
+    #     print('-'*20)
+    #     print(searches)
+
+# ------------------------------------
+#         if request.POST['gender']: 
+
+#             # creating variable for KEY string 'gender'
+#             gender_var = 'gender'
+
+#             # if it already exists, create new string 
+#             if gender_var in searches:
+
+#                 gender_var +='1'    #create new string
+#                 # add value from POST to key
+#                 searches[gender_var] = request.POST['gender']
+
+
+
+#             else:
+#                  # add value from POST to key
+#                 searches[gender_var] = request.POST['gender']
+
+
+#         # if request.POST['sport']:
+#         #     searches['sport'] = request.POST['sport']
+        
+#         # else:
+#         #     print('none')
+
+
+#         print('-'*30)
+#         print(searches)
+#         --------------------------------------
+
+
+
+
+        # if request.POST['gender'] or request.POST['sport']:
+
+       
+    #     print('-'*30)
+    #     print(len(request.POST['gender']))
+        
+    # # if request.POST['gender2']:
+    # #     print('-'*30)
+    # #     print('g2')
+     
+    # if request.POST['sport']:
+    #     print('-'*30)
+    #     print('g3')
+    
+
+    
+        # # input for name 
+        # if request.POST['name']:
+        #     users = User.objects.filter(first_name__startswith = request.POST['name'])
+
+
+   
+        
+
+
+
+        # if request.POST['gender1']:
+        #     users = User.objects.filter(gender = request.POST['gender1'])
+        # if request.POST['gender2']:
+            # users = User.objects.filter(gender = request.POST['gender2'])
+
+
+          
+    #   >>> a = User.objects.filter(gender__contains='female')
+        
+   
         # users = User.objects.filter(gender='male')
-        # return render(request, 'search_app/search_results.html', )
+    return render(request, 'search_app/search_results.html', {'users': users} )
+
+
+#
+
 
 
 # ---------------------------------------------

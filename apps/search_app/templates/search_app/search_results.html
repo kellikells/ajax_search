@@ -15,28 +15,24 @@
 </head>
 
 <body>
-    <div>
-        <div class='row row=cols-5'>
 
-            {% for user in users %}
-            <div class="col" style="padding-top: 20px;">
-                <div class="card" style="border: solid 2px black;">
-                    <div class="card-body">
+            <div class='row row-cols-5'>
 
-                        <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+                {% for user in users %}
+                <div class="col" style="padding-top: 20px;">
+                    <div class="card" style="border: solid 2px black;">
+                        <div class="card-body">
+                            <img src="{{user.image_path}}">
 
+                            <p class="card-text">{{ user.first_name }} {{ user.last_name }}</p>
+
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
+
             </div>
-            {% endfor %}
-
-
-        </div>
-
-
-    </div>
-
-
+    
 
     <!-- BOOTSTRAP'S: Optional JavaScript
     jQuery first, then Popper.js, then Bootstrap JS -->
