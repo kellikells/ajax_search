@@ -74,8 +74,6 @@ def search(request):
 searches = {'gender':[], 'sport':[]}
 
 def search_results(request):
-    users = User.objects.all()
-    
 
     # if data includes an input with name='gender'
     if request.POST.get('gender') != None:
@@ -97,78 +95,57 @@ def search_results(request):
             # add postData sport to the key 'sport'
             searches['sport'].append(new['s'])
 
-# ------------------------------------
-#         if request.POST['gender']: 
 
-#             # creating variable for KEY string 'gender'
-#             gender_var = 'gender'
-
-#             # if it already exists, create new string 
-#             if gender_var in searches:
-
-#                 gender_var +='1'    #create new string
-#                 # add value from POST to key
-#                 searches[gender_var] = request.POST['gender']
-
-
-
-#             else:
-#                  # add value from POST to key
-#                 searches[gender_var] = request.POST['gender']
-
-
-#         # if request.POST['sport']:
-#         #     searches['sport'] = request.POST['sport']
         
-#         # else:
-#         #     print('none')
-
-
-#         print('-'*30)
-#         print(searches)
-#         --------------------------------------
 
 
 
+    # ........ loop through stored values to filter .......
+    # if there are values in the dictionary for gender/sport 
 
-        # if request.POST['gender'] or request.POST['sport']:
+    all_users = {'user': []}
+    # as long as not both genders are selected: filter gender selected
+    if len(searches['gender']) == 1:
 
-       
-    #     print('-'*30)
-    #     print(len(request.POST['gender']))
+
+        # all_users['user'].append(User.objects.filter(gender = searches['gender']))
+
+
         
-    # # if request.POST['gender2']:
-    # #     print('-'*30)
-    # #     print('g2')
-     
-    # if request.POST['sport']:
-    #     print('-'*30)
-    #     print('g3')
-    
+        all_users = User.objects.filter(gender = searches['gender'])
 
+
+
+
+
+
+
+    # as long as a sport is checked, but not all: filter 
+    if 0 < len(searches['sport']) < 5 :
+        for each in searches['sport']:
+
+            # all_users['user'].append(User.objects.filter(sport = each))
+        
+      
+            all_users = User.objects.filter(sport = each)
+
+
+
+
+
+
+
+
+
+        # ------------------------------------
     
         # # input for name 
         # if request.POST['name']:
         #     users = User.objects.filter(first_name__startswith = request.POST['name'])
 
 
-   
-        
-
-
-
-        # if request.POST['gender1']:
-        #     users = User.objects.filter(gender = request.POST['gender1'])
-        # if request.POST['gender2']:
-            # users = User.objects.filter(gender = request.POST['gender2'])
-
-
-          
-    #   >>> a = User.objects.filter(gender__contains='female')
-        
-   
         # users = User.objects.filter(gender='male')
-    return render(request, 'search_app/search_results.html', {'users': users} )
+    return render(request, 'search_app/search_results.html', {'users': all_users} )
 
 
 #
@@ -185,10 +162,3 @@ def search_results(request):
 
 
 
-# ---------------------------------------------
-# get the first page using pagination
-# def on_load(request):
-
-#     leads_list = Lead.objects.all()
-
-#     return render(request, 'pagination_app/table.html', {'leads': leads })
